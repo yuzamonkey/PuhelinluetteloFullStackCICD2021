@@ -12,12 +12,31 @@ jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
     steps:
-      - name: Say hello
-        run: |
-          echo "Hello World!"
-      - name: Now it is
-        run: |
-          date
-      - name: Directory content
-        run: |
-          ls -l
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm run test
+      - name: Bump version (patch) and push tag
+        uses: anothrNick/github-tag-action@1.33.0
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+      - name: push to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "murmuring-brook-65239" 
+          heroku_email: "jusamankki@gmail.com"
+          healthcheck: "https://murmuring-brook-65239.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
