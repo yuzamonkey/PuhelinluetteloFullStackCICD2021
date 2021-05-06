@@ -1,2 +1,6 @@
-node_modules
-text.txt
+/frontend/node_modules
+/frontend/build
+
+/node_modules
+/build
+/text.txt
