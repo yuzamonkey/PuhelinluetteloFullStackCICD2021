@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-//const baseUrl = 'http://localhost:3001/api/persons'
 const baseUrl = '/api/persons'
 
 const getAll = () => {
@@ -19,4 +18,4 @@ const remove = id => {
     return axios.delete(`${baseUrl}/${id}`)
 }
 
-export default { getAll, create, update, remove }
+export default { getAll, create, update, remove } // eslint-disable-line
