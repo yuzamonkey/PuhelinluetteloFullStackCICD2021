@@ -22,8 +22,6 @@ jobs:
         run: npm run lint
       - name: build
         run: npm run build
-      - name: test
-        run: npm run test
       - name: Bump version (patch) and push tag
         uses: anothrNick/github-tag-action@1.33.0
         if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
