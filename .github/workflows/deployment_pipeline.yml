@@ -18,8 +18,6 @@ jobs:
           node-version: '12.x'
       - name: npm install backend
         run: npm install
-      - name: npm install frontend
-        run: cd frontend && npm install
       - name: lint
         run: npm run lint
       - name: build
