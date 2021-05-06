@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint index.js frontend/src",
+    "lint": "eslint index.js",
     "lint-fix": "eslint . --fix"
   },
   "author": "",
