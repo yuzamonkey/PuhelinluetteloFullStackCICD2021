@@ -34,7 +34,11 @@ app.get('/api/persons', (req, res) => {
 
 app.get('/health', (req, res) => {
 	res.json('ok')
-}) 
+})
+
+app.get('/version', (req, res) => {
+	res.json('1')
+})
 
 const port = process.env.PORT || 3001
 app.listen(port)
