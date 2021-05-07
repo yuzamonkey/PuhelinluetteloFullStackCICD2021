@@ -16,12 +16,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: npm install backend
+      - name: npm install
         run: npm install
       - name: lint
         run: npm run lint
       - name: build
         run: npm run build
+      - name: build failed, send status to slack
+        uses: 8398a7/action-slack@v3.9.0
+        with:
+          status: ${{ job.status }}
+          fields: repo, commit, took, message, author
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ !success() }}
       - name: Bump version (patch) and push tag
         uses: anothrNick/github-tag-action@1.33.0
         if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
@@ -38,3 +46,11 @@ jobs:
           healthcheck: "https://murmuring-brook-65239.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+      - name: heroku push success, send status to slack
+        uses: 8398a7/action-slack@v3.9.0
+        with:
+          status: ${{ job.status }}
+          fields: repo, commit, took, message, author
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ success() }}
