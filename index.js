@@ -33,11 +33,11 @@ app.get('/api/persons', (req, res) => {
 })
 
 app.get('/health', (req, res) => {
-	res.json('ok')
+	res.send('ok')
 })
 
 app.get('/version', (req, res) => {
-	res.json('1.1')
+	res.json('1.2')
 })
 
 const port = process.env.PORT || 3001
