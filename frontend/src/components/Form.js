@@ -1,5 +1,5 @@
 const Form = ({ addPerson, newName, handleNameChange, newNumber, handleNumberChange }) => {
-    return (
+  return (
         <div>
             <form onSubmit={addPerson}>
                 <div>
@@ -13,7 +13,7 @@ const Form = ({ addPerson, newName, handleNameChange, newNumber, handleNumberCha
                 </div>
             </form>
         </div>
-    )
+  )
 }
 
 export default Form

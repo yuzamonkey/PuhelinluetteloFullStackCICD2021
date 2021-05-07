@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "npm install && rm -rf build && cd frontend && npm install && npm run build && cp -r build ../",
+    "build": "rm -rf build && cd frontend && rm -rf build && npm install && npm run build && cp -r build ../",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint index.js",
-    "lint-fix": "eslint . --fix"
+    "lint": "eslint . && cd frontend && npm run lint",
+    "lint-fix": "eslint . --fix && cd frontend && npm run lint-fix"
   },
   "author": "",
   "license": "ISC",

@@ -36,8 +36,7 @@ const App = () => {
         }
         personService
           .update(updateperson.id, personObject)
-          .then(response => {
-            console.log('update response', response)
+          .then(response => { // eslint-disable-line
             const newPersons = persons.map(person => (updateperson.id) === (person.id) ? personObject : person)
             setPersons(newPersons)
             setSuccessMessage(
@@ -47,7 +46,7 @@ const App = () => {
               setSuccessMessage(null)
             }, 5000)
           })
-          .catch(error => {
+          .catch(error => { // eslint-disable-line
             const newPersons = persons.filter(person => person.name !== newName)
             setPersons(newPersons)
             setErrorMessage(`Information of ${newName} has already removed from server`)
@@ -93,7 +92,7 @@ const App = () => {
     if (returnvalue) {
       personService
         .remove(id)
-        .then(response => {
+        .then(response => { // eslint-disable-line
           const newPersons = persons.filter(person => Number(person.id) !== Number(id))
           setPersons(newPersons)
           setNewName('')
@@ -106,7 +105,6 @@ const App = () => {
           }, 5000)
         })
     }
-
   }
 
   const handleNameChange = (event) => {
@@ -138,7 +136,6 @@ const App = () => {
       <ShowPersons persons={persons} filter={filter} removePerson={removePerson} />
     </div>
   )
-
 }
 
 export default App
