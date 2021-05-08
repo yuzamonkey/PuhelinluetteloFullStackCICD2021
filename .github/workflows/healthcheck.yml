@@ -1,15 +1,15 @@
-name: Periodic healthcheck
+# name: Periodic healthcheck
 
-on:
-  schedule:
-    - cron:  '0 0-12 * * *' #runs at minute 0
+# on:
+#   schedule:
+#     - cron:  '0 0-12 * * *' #runs at minute 0
 
-jobs:
-  healthcheck:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Check the deployed service URL
-        uses: jtalk/url-health-check-action@v1.5
-        with:
-          url: https://murmuring-brook-65239.herokuapp.com/health
-          follow-redirect: no # Optional, defaults to "no"
+# jobs:
+#   healthcheck:
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - name: Check the deployed service URL
+#         uses: jtalk/url-health-check-action@v1.5
+#         with:
+#           url: https://murmuring-brook-65239.herokuapp.com/health
+#           follow-redirect: no # Optional, defaults to "no"
