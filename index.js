@@ -37,7 +37,7 @@ app.get('/health', (req, res) => {
 })
 
 app.get('/version', (req, res) => {
-	res.json('1.3')
+	res.json('1.4')
 })
 
 const port = process.env.PORT || 3001
